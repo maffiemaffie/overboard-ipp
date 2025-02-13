@@ -148,7 +148,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345490232}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 1.7
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -179,9 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30cf7e087c087b6419677db9c1e52635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatStrength: 0.5
+  floatStrength: 0.11
   floatSpeed: 2
-  rotationSpeed: 10
+  rotationSpeed: 1.3
 --- !u!65 &345490235
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -282,10 +282,9 @@ GameObject:
   - component: {fileID: 615378688}
   - component: {fileID: 615378690}
   - component: {fileID: 615378689}
-  - component: {fileID: 615378691}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -364,20 +363,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &615378691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 615378687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e91de96bfe856f34aa02416a7561b251, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 100
-  playerBody: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,7 +582,7 @@ GameObject:
   - component: {fileID: 1703387322}
   m_Layer: 0
   m_Name: Ocean
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -727,6 +712,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 7
+  lookSpeedX: 4
+  lookSpeedY: 4
 --- !u!54 &1997432726
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -735,7 +722,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997432724}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 670.21
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -752,7 +739,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &1997432727
 CapsuleCollider:
