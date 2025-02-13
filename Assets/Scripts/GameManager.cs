@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public UnityEngine.UI.Text scoreText;
-    public UnityEngine.UI.Text timerText;
+    public GameObject timerText;
 
 public GameObject gameOverPanel;
 
