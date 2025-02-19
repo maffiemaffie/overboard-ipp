@@ -1,0 +1,54 @@
+using UnityEngine;
+using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
+
+public class ScoreManager : MonoBehaviour
+{
+    public static ScoreManager Instance; // Singleton instance
+    public UnityEngine.UI.Text scoreText; // UI Text element to display the score
+    public UnityEngine.UI.Text finalScoreText; // UI Text element to display the score
+    private int currentScore = 0;
+    private bool stopWorking = false;
+
+    void Awake()
+    {
+        // Ensure only one instance of ScoreManager exists
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Start()
+    {
+        // Update the score UI at the start
+        UpdateScoreText();
+    }
+
+    public void AddPoints(int points)
+    {
+        if (!stopWorking)
+        {
+            // Add points to the score
+            currentScore += points;
+            UpdateScoreText();
+        }
+        
+    }
+
+    public void Stop()
+    {
+        stopWorking = true;
+    }
+
+    void UpdateScoreText()
+    {
+        // Update the score text on the UI
+        scoreText.text = "Score: " + currentScore;
+        finalScoreText.text = "Score: " + currentScore;
+    }
+}
