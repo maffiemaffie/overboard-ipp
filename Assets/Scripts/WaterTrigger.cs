@@ -8,17 +8,23 @@ public class WaterTrigger : MonoBehaviour
 
     private float lastPenaltyTime = -Mathf.Infinity; // Tracks last penalty time
 
-    private void OnTriggerStay(Collider other)
+    void Update()
     {
-        if (other.CompareTag("Player"))
+        FlotsamCollider[] flotsamColliders = FindObjectsByType<FlotsamCollider>(FindObjectsSortMode.None);
+        foreach (FlotsamCollider flotsamCollider in flotsamColliders)
         {
-            // Check if enough time has passed since the last penalty
-            if (Time.time >= lastPenaltyTime + penaltyCooldown)
+            if (flotsamCollider.PlayerContact)
             {
-                timerManager.AdjustTime(-5); // Deduct 5 seconds
-                penaltyText.ShowText(); // Show "-5 SECONDS!" text
-                lastPenaltyTime = Time.time; // Update penalty timer
+                return;
             }
+        }
+
+        // Check if enough time has passed since the last penalty
+        if (Time.time >= lastPenaltyTime + penaltyCooldown)
+        {
+            timerManager.AdjustTime(-5); // Deduct 5 seconds
+            penaltyText.ShowText(); // Show "-5 SECONDS!" text
+            lastPenaltyTime = Time.time; // Update penalty timer
         }
     }
 }
