@@ -97,6 +97,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a8c882aa3dec447d5a4c6b80d8a4f96f, type: 3}
       insertIndex: -1
       addedObject: {fileID: -2441956499314399809}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a8c882aa3dec447d5a4c6b80d8a4f96f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1316472223486363069}
   m_SourcePrefab: {fileID: 100100000, guid: a8c882aa3dec447d5a4c6b80d8a4f96f, type: 3}
 --- !u!1 &4905849328248212175 stripped
 GameObject:
@@ -157,3 +160,15 @@ MonoBehaviour:
   ableToSpawnCoin: 1
   warningSymbolPrefab: {fileID: 1887923475855019182, guid: ec00d1f1b9f05be429e8f8a5e5948ff2, type: 3}
   coinPrefab: {fileID: 280726557057193802, guid: c7569851d2d75cb43823515faf3aae60, type: 3}
+--- !u!114 &1316472223486363069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4905849328248212175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e498f35a81e4b49b6681a66bba9e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
