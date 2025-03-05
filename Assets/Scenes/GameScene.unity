@@ -475,6 +475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   penaltyText: {fileID: 1663833032}
   timerManager: {fileID: 1201882868}
+  gracePeriod: 0.5
   penaltyCooldown: 3
 --- !u!1 &204547366
 GameObject:
@@ -1462,6 +1463,50 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &714220596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 714220598}
+  - component: {fileID: 714220597}
+  m_Layer: 0
+  m_Name: BodyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &714220597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714220596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef4e4c0e5cea46df87542a53d022f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &714220598
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714220596}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.053688, y: -9.484086, z: -19.897766}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &808107448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3512,3 +3557,4 @@ SceneRoots:
   - {fileID: 92988933}
   - {fileID: 1703382846}
   - {fileID: 568445857}
+  - {fileID: 714220598}
