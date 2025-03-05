@@ -1,4 +1,8 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using Windows.Kinect;
+using Kinect = Windows.Kinect;
 
 public class PlayerPositionDetection : MonoBehaviour
 {
@@ -25,15 +29,15 @@ public class PlayerPositionDetection : MonoBehaviour
         List<Vector2> positions = new List<Vector2>();
         foreach (var body in data)
         {
-            footLeft = body.Joints[Kinect.JointType.FootLeft];
-            footRight = body.Joints[Kinect.JointType.FootRight];
-            playerPosition = AverageJointPosition(footLeft, footRight);
+            Kinect.Joint footLeft = body.Joints[Kinect.JointType.FootLeft];
+            Kinect.Joint footRight = body.Joints[Kinect.JointType.FootRight];
+            Vector2 playerPosition = AverageJointPosition(footLeft, footRight);
             positions.Add(playerPosition);
         }
         return positions;
     }
 
-    private Vector2 AverageJointPosition(joint1, joint2) {
+    private Vector2 AverageJointPosition(Kinect.Joint joint1, Kinect.Joint joint2) {
         Vector2 v1 = GetVector2FromJoint(joint1);
         Vector2 v2 = GetVector2FromJoint(joint2);
 
