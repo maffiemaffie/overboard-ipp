@@ -1,47 +1,71 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using Windows.Kinect;
+using Kinect = Windows.Kinect;
 
 public class PlayerPositionDetection : MonoBehaviour
 {
     public BodySourceManager bodySourceManager;
+    public GameObject player;
+    private Vector3 playerPosition;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        playerPosition = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        List<Vector2> positions = GetPlayerPositions();
+        List<Vector3> positions = GetPlayerPositions();
         if (positions.Count == 0) return;
         
-        Debug.Log($"Player Position: {positions[0].x}, {positions[0].y}");
+        player.transform.position = positions[0];
+
+        Debug.Log(positions.Count);
+        foreach (var position in positions)
+        {
+            if (position.x == 0 && position.y == 0 && position.z == 0) continue;
+            Debug.Log($"Player Position: {position.x}, {position.y}, {position.z}");
+            playerPosition = new Vector3(position.x, position.y, position.z);
+            return;
+        }
+
     }
 
-    private List<Vector2> GetPlayerPositions()
+    public Vector3 GetPlayerPosition()
+    {
+        return playerPosition;
+    }
+
+    public List<Vector3> GetPlayerPositions()
     {
         Body[] data = bodySourceManager.GetData();
-        List<Vector2> positions = new List<Vector2>();
+        List<Vector3> positions = new List<Vector3>();
         foreach (var body in data)
         {
-            footLeft = body.Joints[Kinect.JointType.FootLeft];
-            footRight = body.Joints[Kinect.JointType.FootRight];
-            playerPosition = AverageJointPosition(footLeft, footRight);
+            Kinect.Joint footLeft = body.Joints[Kinect.JointType.FootLeft];
+            Kinect.Joint footRight = body.Joints[Kinect.JointType.FootRight];
+            Vector3 playerPosition = AverageJointPosition(footLeft, footRight);
             positions.Add(playerPosition);
         }
         return positions;
     }
 
-    private Vector2 AverageJointPosition(joint1, joint2) {
-        Vector2 v1 = GetVector2FromJoint(joint1);
-        Vector2 v2 = GetVector2FromJoint(joint2);
+    private Vector3 AverageJointPosition(Kinect.Joint joint1, Kinect.Joint joint2) {
+        Vector3 v1 = GetVector3FromJoint(joint1);
+        Vector3 v2 = GetVector3FromJoint(joint2);
 
-        return 0.5f * (v1 + v2);
+        return new Vector3(
+            0.5f * (v1.x + v2.x), 
+            0.5f * (v1.y + v2.y),
+            0.5f * (v1.z + v2.z)
+        );
     }
 
-    private Vector2 GetVector2FromJoint(Kinect.Joint joint)
+    private Vector3 GetVector3FromJoint(Kinect.Joint joint)
     {
-        return new Vector2(joint.Position.X, joint.Position.Z);
+        return new Vector3(joint.Position.X * 10, joint.Position.Y * 10, joint.Position.Z * -10);
     }
 }

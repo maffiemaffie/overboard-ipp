@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         firstPersonOffset = new Vector3(0, 1.0f, 0); // Adjust this to suit your player height
-        currentView = CameraView.FirstPerson;  // Start in first-person view
+        currentView = CameraView.TopDown;  // Start in first-person view
         SetCameraView();
     }
 
@@ -75,6 +75,8 @@ public class CameraController : MonoBehaviour
                 break;
             case CameraView.TopDown:
                 playerCamera.transform.position = topDownPosition.position;
+                Camera.main.orthographicSize = 11.4f;
+                Camera.main.orthographic = true;
                 playerCamera.transform.rotation = topDownPosition.rotation;
                 break;
             case CameraView.Isometric:
