@@ -27,6 +27,7 @@ public class PlayerPositionDetection : MonoBehaviour
         foreach (var position in positions)
         {
             if (position.x == 0 && position.y == 0 && position.z == 0) continue;
+            if (position.x < -14.5) continue;
             Debug.Log($"Player Position: {position.x}, {position.y}, {position.z}");
             playerPosition = new Vector3(position.x, position.y, position.z);
             return;

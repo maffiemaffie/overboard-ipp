@@ -85,7 +85,7 @@ public class FlotsamBehavior : MonoBehaviour
     {
         if (coinPrefab != null)
         {
-            coinInstance = Instantiate(coinPrefab, transform.position + Vector3.up * 2f, Quaternion.identity);
+            coinInstance = Instantiate(coinPrefab, transform.position + Vector3.up * 4f, Quaternion.identity);
             coinInstance.transform.SetParent(transform); // Parent to flotsam so it moves with it
         }
     }

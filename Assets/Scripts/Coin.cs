@@ -10,7 +10,7 @@ public class Coin : MonoBehaviour
         if (!isCollected)
         {
             // Make the coin spin around the Y-axis (using deltaTime to make it frame-rate independent)
-            transform.Rotate(0, 100f * Time.deltaTime, 0); // 100f is the rotation speed
+            transform.Rotate(100f * Time.deltaTime, 0, 0); // 100f is the rotation speed
         }
     }
 
