@@ -8,6 +8,8 @@ public class Denoiser : MonoBehaviour
     private Queue<Vector3> rightFootPositions = new Queue<Vector3>();
     // private Queue<Vector3> centerPositions = new Queue<Vector3>();
 
+    public int playerNumber;
+
     public GameObject leftFoot; 
     public GameObject rightFoot;
     public PlayerPositionDetection playerPositionDetection;
@@ -20,7 +22,7 @@ public class Denoiser : MonoBehaviour
 
     void Update()
     {
-        PlayerPositionDetection.PlayerPosition positions = playerPositionDetection.GetPlayerPosition();
+        PlayerPositionDetection.PlayerPosition positions = playerPositionDetection.GetActivePositions()[playerNumber];
         SetNextPosition(positions.leftFoot, positions.rightFoot, positions.center);
         UpdatePositions();
     }
