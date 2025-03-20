@@ -10,6 +10,7 @@ public class PlayerPositionDetection : MonoBehaviour
     public GameObject leftFoot;
     public GameObject rightFoot;
     private PlayerPosition playerPosition;
+    public GameObject boundsManager;
     public bool fakeData = true;
 
     void Start()
@@ -48,11 +49,13 @@ public class PlayerPositionDetection : MonoBehaviour
         List<PlayerPosition> positions = GetPlayerPositions();
         if (positions.Count == 0) return;
 
+        BoundsManager bounds = boundsManager.GetComponent<BoundsManager>();
+
         Debug.Log(positions.Count);
         foreach (PlayerPosition position in positions)
         {
             if (position.center.x == 0 && position.center.y == 0 && position.center.z == 0) continue;
-            if (position.center.x < -14.5) continue;
+            if (!bounds.CheckInBounds(position.center)) continue;
             Debug.Log($"Player Position: {position.center.x}, {position.center.y}, {position.center.z}");
             playerPosition = new PlayerPosition(position.center, position.leftFoot, position.rightFoot);
             return;
