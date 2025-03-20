@@ -7,59 +7,105 @@ using Kinect = Windows.Kinect;
 public class PlayerPositionDetection : MonoBehaviour
 {
     public BodySourceManager bodySourceManager;
-    public GameObject player;
-    private Vector3 playerPosition;
+    public GameObject leftFoot;
+    public GameObject rightFoot;
+    private PlayerPosition playerPosition;
+    public bool fakeData = true;
 
     void Start()
     {
-        playerPosition = new Vector3(0, 0, 0);
+        playerPosition = new PlayerPosition(
+            new Vector3(0, 0, 0),
+            new Vector3(0, 0, 0),
+            new Vector3(0, 0, 0)
+        );
     }
 
     // Update is called once per frame
     void Update()
     {
-        List<Vector3> positions = GetPlayerPositions();
+        if (fakeData)
+        {
+            Vector3 center = new Vector3(
+                Mathf.Cos(Time.time) * 10,
+                0,
+                -30 + Mathf.Sin(Time.time) * 10
+            );
+            Vector3 leftFoot = new Vector3(
+                center.x - 1,
+                center.y,
+                center.z
+            );
+            Vector3 rightFoot = new Vector3(
+                center.x + 1,
+                center.y,
+                center.z
+            );
+
+            playerPosition = new PlayerPosition(center, leftFoot, rightFoot);
+            return;
+        }
+        List<PlayerPosition> positions = GetPlayerPositions();
         if (positions.Count == 0) return;
-        
-        player.transform.position = positions[0];
 
         Debug.Log(positions.Count);
-        foreach (var position in positions)
+        foreach (PlayerPosition position in positions)
         {
-            if (position.x == 0 && position.y == 0 && position.z == 0) continue;
-            if (position.x < -14.5) continue;
-            Debug.Log($"Player Position: {position.x}, {position.y}, {position.z}");
-            playerPosition = new Vector3(position.x, position.y, position.z);
+            if (position.center.x == 0 && position.center.y == 0 && position.center.z == 0) continue;
+            if (position.center.x < -14.5) continue;
+            Debug.Log($"Player Position: {position.center.x}, {position.center.y}, {position.center.z}");
+            playerPosition = new PlayerPosition(position.center, position.leftFoot, position.rightFoot);
             return;
         }
 
     }
 
-    public Vector3 GetPlayerPosition()
+    public struct PlayerPosition
+    {
+        public Vector3 center;
+        public Vector3 leftFoot;
+        public Vector3 rightFoot;
+
+        public PlayerPosition(Vector3 center, Vector3 leftFoot, Vector3 rightFoot)
+        {
+            this.center = center;
+            this.leftFoot = leftFoot;
+            this.rightFoot = rightFoot;
+        }
+    }
+
+    public PlayerPosition GetPlayerPosition()
     {
         return playerPosition;
     }
 
-    public List<Vector3> GetPlayerPositions()
+    public List<PlayerPosition> GetPlayerPositions()
     {
         Body[] data = bodySourceManager.GetData();
-        List<Vector3> positions = new List<Vector3>();
+        List<PlayerPosition> positions = new List<PlayerPosition>();
         foreach (var body in data)
         {
             Kinect.Joint footLeft = body.Joints[Kinect.JointType.FootLeft];
             Kinect.Joint footRight = body.Joints[Kinect.JointType.FootRight];
-            Vector3 playerPosition = AverageJointPosition(footLeft, footRight);
-            positions.Add(playerPosition);
+            Vector3 playerCenter = AverageJointPosition(footLeft, footRight);
+            positions.Add(
+                new PlayerPosition(
+                    playerCenter,
+                    GetVector3FromJoint(footLeft),
+                    GetVector3FromJoint(footRight)
+                )
+            );
         }
         return positions;
     }
 
-    private Vector3 AverageJointPosition(Kinect.Joint joint1, Kinect.Joint joint2) {
+    private Vector3 AverageJointPosition(Kinect.Joint joint1, Kinect.Joint joint2)
+    {
         Vector3 v1 = GetVector3FromJoint(joint1);
         Vector3 v2 = GetVector3FromJoint(joint2);
 
         return new Vector3(
-            0.5f * (v1.x + v2.x), 
+            0.5f * (v1.x + v2.x),
             0.5f * (v1.y + v2.y),
             0.5f * (v1.z + v2.z)
         );

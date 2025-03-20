@@ -17,7 +17,7 @@ public class Coin : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Check if the player has collided with the coin
-        if (other.CompareTag("Player") && !isCollected)
+        if ((other.CompareTag("LeftFoot") || other.CompareTag("RightFoot")) && !isCollected)
         {
             CollectCoin();
         }
