@@ -9,6 +9,7 @@ public class PlayerPositionDetection : MonoBehaviour
     public BodySourceManager bodySourceManager;
     public GameObject leftFoot;
     public GameObject rightFoot;
+    private List<PlayerPosition> activePlayerPositions;
     private PlayerPosition playerPosition;
     public GameObject boundsManager;
     public bool fakeData = true;
@@ -22,28 +23,38 @@ public class PlayerPositionDetection : MonoBehaviour
         );
     }
 
-    // Update is called once per frame
-    void Update()
+    private PlayerPosition GetFakeVector()
     {
-        if (fakeData)
-        {
-            Vector3 center = new Vector3(
+        Vector3 center = new Vector3(
                 Mathf.Cos(Time.time) * 10,
                 0,
                 -30 + Mathf.Sin(Time.time) * 10
             );
-            Vector3 leftFoot = new Vector3(
-                center.x - 1,
-                center.y,
-                center.z
-            );
-            Vector3 rightFoot = new Vector3(
-                center.x + 1,
-                center.y,
-                center.z
-            );
+        Vector3 leftFoot = new Vector3(
+            center.x - 1,
+            center.y,
+            center.z
+        );
+        Vector3 rightFoot = new Vector3(
+            center.x + 1,
+            center.y,
+            center.z
+        );
 
-            playerPosition = new PlayerPosition(center, leftFoot, rightFoot);
+        return new PlayerPosition(center, leftFoot, rightFoot);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        activePlayerPositions = new List<PlayerPosition>();
+
+        if (fakeData)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                activePlayerPositions.Add(GetFakeVector());
+            }
             return;
         }
         List<PlayerPosition> positions = GetPlayerPositions();
@@ -57,8 +68,7 @@ public class PlayerPositionDetection : MonoBehaviour
             if (position.center.x == 0 && position.center.y == 0 && position.center.z == 0) continue;
             if (!bounds.CheckInBounds(position.center)) continue;
             Debug.Log($"Player Position: {position.center.x}, {position.center.y}, {position.center.z}");
-            playerPosition = new PlayerPosition(position.center, position.leftFoot, position.rightFoot);
-            return;
+            activePlayerPositions.Add(new PlayerPosition(position.center, position.leftFoot, position.rightFoot));
         }
 
     }
@@ -77,9 +87,9 @@ public class PlayerPositionDetection : MonoBehaviour
         }
     }
 
-    public PlayerPosition GetPlayerPosition()
+    public List<PlayerPosition> GetActivePositions()
     {
-        return playerPosition;
+        return activePlayerPositions;
     }
 
     public List<PlayerPosition> GetPlayerPositions()
