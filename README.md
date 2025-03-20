@@ -66,12 +66,6 @@ This step ensures accurate player tracking but is not required just to run the g
 
 ---
 
-## 🛠️ Simulated Kinect Input *(Planned)*
-
-A script is in development to **generate simulated Kinect data**, allowing the game to run without live player input for testing.
-
----
-
 ## 🤝 Contributing
 
 Internal contributions from team members are welcome.
