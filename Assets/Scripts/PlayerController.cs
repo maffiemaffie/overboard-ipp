@@ -35,12 +35,27 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        positionFromKinect = playerPositionDetection.GetPlayerPosition();
-        if (positionFromKinect.x != 0 || positionFromKinect.y != 0 || positionFromKinect.z != 0) {
+        PlayerPositionDetection.PlayerPosition positions = playerPositionDetection.GetPlayerPosition();
+        if (tag == "LeftFoot")
+        {
+            positionFromKinect = playerPositionDetection.GetPlayerPosition().leftFoot;
+        }
+        else if (tag == "RightFoot")
+        {
+            positionFromKinect = playerPositionDetection.GetPlayerPosition().rightFoot;
+        }
+        else
+        {
+            positionFromKinect = positions.center;
+        }
+
+        if (positionFromKinect.x != 0 || positionFromKinect.y != 0 || positionFromKinect.z != 0)
+        {
             positionFromKinect.x += xOff;
             positionFromKinect.z += zOff;
             transform.position = positionFromKinect;
-            if (!gameStarted) {
+            if (!gameStarted)
+            {
                 gameStarted = true;
             }
         }
