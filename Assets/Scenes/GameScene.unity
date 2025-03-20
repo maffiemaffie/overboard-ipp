@@ -1410,8 +1410,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flotsamPrefabs:
-  - {fileID: 4905849328248212175, guid: 28cdb941bf592d947a544d6b9810915c, type: 3}
-  - {fileID: 8989743454054250942, guid: f06ec993fafb23c42a54fa81e3c0a474, type: 3}
+  - {fileID: 3959003721913001843, guid: 2322c5170d30843eaaa981d280d93a16, type: 3}
+  - {fileID: 177073837375797330, guid: 31e53dd4e826946149af0b30d76cba2c, type: 3}
+  - {fileID: 7071855039391069103, guid: 19ec4fcca4fc54c6f978741e8f8f749f, type: 3}
+  - {fileID: 2883081542800028395, guid: f7ee9542a18b0439d99f8a33b8bfb19b, type: 3}
   spawnIntervalMin: 2
   spawnIntervalMax: 4
   spawnRadius: 10
@@ -1420,7 +1422,7 @@ MonoBehaviour:
   flotsamLayer:
     serializedVersion: 2
     m_Bits: 8
-  spawnY: -3
+  spawnY: 0
   playerTransform: {fileID: 1997432730}
   minGlobalBoundary: {x: -14, y: -8, z: -42}
   maxGlobalBoundary: {x: 14, y: -8, z: -18}
