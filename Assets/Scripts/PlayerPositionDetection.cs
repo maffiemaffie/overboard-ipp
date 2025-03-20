@@ -9,6 +9,7 @@ public class PlayerPositionDetection : MonoBehaviour
     public BodySourceManager bodySourceManager;
     public GameObject player;
     private Vector3 playerPosition;
+    public bool fakeData = true;
 
     void Start()
     {
@@ -18,9 +19,18 @@ public class PlayerPositionDetection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (fakeData)
+        {
+            playerPosition = new Vector3(
+                Mathf.Cos(Time.time) * 10,
+                0,
+                -30 + Mathf.Sin(Time.time) * 10
+            );
+            return;
+        }
         List<Vector3> positions = GetPlayerPositions();
         if (positions.Count == 0) return;
-        
+
         player.transform.position = positions[0];
 
         Debug.Log(positions.Count);
@@ -54,12 +64,13 @@ public class PlayerPositionDetection : MonoBehaviour
         return positions;
     }
 
-    private Vector3 AverageJointPosition(Kinect.Joint joint1, Kinect.Joint joint2) {
+    private Vector3 AverageJointPosition(Kinect.Joint joint1, Kinect.Joint joint2)
+    {
         Vector3 v1 = GetVector3FromJoint(joint1);
         Vector3 v2 = GetVector3FromJoint(joint2);
 
         return new Vector3(
-            0.5f * (v1.x + v2.x), 
+            0.5f * (v1.x + v2.x),
             0.5f * (v1.y + v2.y),
             0.5f * (v1.z + v2.z)
         );
