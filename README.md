@@ -42,7 +42,7 @@ Overboard is a **time-based "floor is lava" survival game** where shipwrecked pi
 
 ---
 
-## 🎯 Calibration Process
+## 🎯 Calibration Process (in development)
 
 1. **Set up the Kinect sensors** in fixed positions.
 2. **Floor Calibration:** Stand in one corner of the play area, then in the opposite corner. This allows the game to map the floor space.
