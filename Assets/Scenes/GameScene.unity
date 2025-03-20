@@ -2637,6 +2637,7 @@ MonoBehaviour:
   bodySourceManager: {fileID: 714220597}
   leftFoot: {fileID: 1997432724}
   rightFoot: {fileID: 204386675}
+  boundsManager: {fileID: 666666155}
   fakeData: 1
 --- !u!4 &1203261055
 Transform:
