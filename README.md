@@ -27,7 +27,7 @@ Overboard is a **time-based "floor is lava" survival game** where shipwrecked pi
 1. Install Kinect for Windows SDK 2.0
 2. Clone the repo:
    ```sh  
-   git clone https://github.com/maffiemaffie/overboard.git
+   git clone https://github.com/Overboard-RIT/overboard.git
    ```
 3. Open the Unity project in **Unity 6**
 
