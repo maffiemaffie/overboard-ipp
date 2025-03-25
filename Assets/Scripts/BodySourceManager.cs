@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Windows.Kinect;
+using System;
 
 public class BodySourceManager : MonoBehaviour 
 {
@@ -18,6 +19,7 @@ public class BodySourceManager : MonoBehaviour
     {
         _Sensor = KinectSensor.GetDefault();
 
+
         if (_Sensor != null)
         {
             _Reader = _Sensor.BodyFrameSource.OpenReader();
@@ -26,7 +28,8 @@ public class BodySourceManager : MonoBehaviour
             {
                 _Sensor.Open();
             }
-        }   
+        }
+        
     }
     
     void Update () 
@@ -34,6 +37,7 @@ public class BodySourceManager : MonoBehaviour
         if (_Reader != null)
         {
             var frame = _Reader.AcquireLatestFrame();
+
             if (frame != null)
             {
                 if (_Data == null)

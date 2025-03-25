@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Windows.Kinect;
 using Kinect = Windows.Kinect;
+using System;
 
 public class PlayerPositionDetection : MonoBehaviour
 {
