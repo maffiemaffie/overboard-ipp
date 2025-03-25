@@ -22,7 +22,9 @@ public class Denoiser : MonoBehaviour
 
     void Update()
     {
-        PlayerPositionDetection.PlayerPosition positions = playerPositionDetection.GetActivePositions()[playerNumber];
+        List<PlayerPositionDetection.PlayerPosition> allPositions = playerPositionDetection.GetActivePositions();
+        if (allPositions.Count < playerNumber + 1) return;
+        PlayerPositionDetection.PlayerPosition positions = allPositions[playerNumber];
         SetNextPosition(positions.leftFoot, positions.rightFoot, positions.center);
         UpdatePositions();
     }
