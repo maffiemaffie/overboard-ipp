@@ -10,6 +10,7 @@ public class CoinSpawnAnimation : MonoBehaviour
     {
         // Get the Animator component attached to this GameObject
         animator = GetComponent<Animator>();
+        
     }
 
     // This method will be called when the animation finishes playing

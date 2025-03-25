@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3857747582825577847}
   - component: {fileID: 4057415158791317448}
   - component: {fileID: 16446966416793624}
+  - component: {fileID: -4747231873213873389}
   m_Layer: 0
   m_Name: CoinSpawnAnimation
   m_TagString: Untagged
@@ -110,3 +111,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-4747231873213873389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4352981629451102000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa6f4214f679b448a05522973f14b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 280726557057193802, guid: c7569851d2d75cb43823515faf3aae60, type: 3}
