@@ -24,6 +24,9 @@ public class UIManager : MonoBehaviour
     private PlayerPositionDetection.PlayerPosition playerPosition;
     
     private Vector3 canvasPos;
+
+    private Vector3 leftFootCalibration = new Vector3(0,0);
+    private Vector3 rightFootCalibration = new Vector3(0,0);
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +37,42 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Left Foot Controls (Arrow Keys)
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            leftFootCalibration.x -= 0.1f;
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            leftFootCalibration.x += 0.1f;
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            leftFootCalibration.z += 0.1f;
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            leftFootCalibration.z -= 0.1f;
+        }
+
+        // Right Foot Controls (WASD Keys)
+        if (Input.GetKey(KeyCode.A))
+        {
+            rightFootCalibration.x -= 0.1f;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            rightFootCalibration.x += 0.1f;
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            rightFootCalibration.z += 0.1f;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            rightFootCalibration.z -= 0.1f;
+        }
+
         if (kinect != null)
         {
             this.playerPosition = kinect.GetPlayerPosition();
@@ -44,8 +83,15 @@ public class UIManager : MonoBehaviour
 
     private void updateDotPositions()
     {
-        redDotLeft.transform.position = canvasPos + playerPosition.leftFoot;
-        redDotRight.transform.position = canvasPos + playerPosition.rightFoot;
+        Vector3 newPosition = playerPosition.leftFoot + leftFootCalibration;
+        newPosition.x *= -110.0f;
+        newPosition += canvasPos;
+        redDotLeft.transform.position = newPosition;
+
+        newPosition = playerPosition.rightFoot + rightFootCalibration;
+        newPosition.x *= 110.0f;
+        newPosition += canvasPos;
+        redDotRight.transform.position = newPosition;
     }
 
     private void updateText()
