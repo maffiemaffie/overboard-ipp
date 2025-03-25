@@ -497,8 +497,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4bf8a342b20242be9ef02c9938070cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windowSize: 5
-  playerNumber: 1
+  windowSize: 30
+  playerNumber: 0
   leftFoot: {fileID: 1997432724}
   rightFoot: {fileID: 204386675}
   playerPositionDetection: {fileID: 1203261054}
@@ -2846,7 +2846,7 @@ MonoBehaviour:
   leftFoot: {fileID: 1997432724}
   rightFoot: {fileID: 204386675}
   boundsManager: {fileID: 666666155}
-  fakeData: 1
+  fakeData: 0
 --- !u!4 &1203261055
 Transform:
   m_ObjectHideFlags: 0
@@ -3762,8 +3762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4bf8a342b20242be9ef02c9938070cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windowSize: 5
-  playerNumber: 2
+  windowSize: 30
+  playerNumber: 1
   leftFoot: {fileID: 1488990628}
   rightFoot: {fileID: 547467364}
   playerPositionDetection: {fileID: 1203261054}
