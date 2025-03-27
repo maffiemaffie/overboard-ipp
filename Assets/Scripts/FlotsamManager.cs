@@ -59,7 +59,7 @@ public class FlotsamManager : MonoBehaviour
         if (IsPositionWithinGlobalBoundary(spawnPosition) && !IsPositionOccupied(spawnPosition, flotsamPrefab))
         {
 
-
+            spawnPosition.y = -3f;
             Instantiate(flotsamPrefab, spawnPosition, Quaternion.identity);
         }
         else
