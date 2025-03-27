@@ -17,7 +17,7 @@ public class ActivateAllDisplays : MonoBehaviour
         }
 
         // debugging for determining which display is what
-        Debug.Log("Displays connected: " + Display.displays.Length);
+      
 
         for (int i = 0; i < Display.displays.Length; i++)
         {
