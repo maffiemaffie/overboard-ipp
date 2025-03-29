@@ -5,8 +5,8 @@ using static System.Net.Mime.MediaTypeNames;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance; // Singleton instance
-    public UnityEngine.UI.Text scoreText; // UI Text element to display the score
-    public UnityEngine.UI.Text finalScoreText; // UI Text element to display the score
+    public BackWallUI scoreUI; // UI Text element to display the score
+    // public UnityEngine.UI.Text finalScoreText; // UI Text element to display the score
     private int currentScore = 0;
     private bool stopWorking = false;
 
@@ -48,7 +48,7 @@ public class ScoreManager : MonoBehaviour
     void UpdateScoreText()
     {
         // Update the score text on the UI
-        scoreText.text = "Score: " + currentScore;
-        finalScoreText.text = "Score: " + currentScore;
+        scoreUI.SetScore(currentScore);
+        // finalScoreText.text = "Score: " + currentScore;
     }
 }
